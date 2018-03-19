@@ -7,7 +7,7 @@ import java.net.URL;
  * Utility class that provides a port number for the Resteasy embedded container.
  */
 public class PortProviderUtil {
-    private static final int DEFAULT_PORT = 9990;
+    private static final int DEFAULT_PORT = 8080;
 
     private static final String PORT_ENV_VAR_NAME = "RESTEASY_PORT";
 

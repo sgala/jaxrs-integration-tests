@@ -172,12 +172,12 @@ public class TestUtil {
         return ManagementClient.online(onlineOptions);
     }
 
-    public static ModelNodeResult runCmd(OnlineManagementClient client, String cmd) throws Exception {
+/*    public static ModelNodeResult runCmd(OnlineManagementClient client, String cmd) throws Exception {
         ModelNodeResult result = client.execute(cmd);
         logger.info("CLI command: " + cmd);
-        logger.info("Result: " + result.toString());
+        logger.info("Result: " + result);
         return result;
-    }
+    }*/
 
 
     /**
