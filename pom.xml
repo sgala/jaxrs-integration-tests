@@ -134,8 +134,8 @@
                                 <phase>process-test-classes</phase>
                                 <configuration>
                                     <target>
-                                        <unzip src="${project.basedir}\apache-tomcat-resteasy.zip"
-                                               dest="${project.build.directory}\tomcat"
+                                        <unzip src="${project.basedir}/apache-tomcat-resteasy.zip"
+                                               dest="${project.build.directory}/tomcat"
                                                overwrite="false"/>
                                     </target>
                                 </configuration>
@@ -148,11 +148,11 @@
                 </plugins>
             </build>
             <properties>
-                <tomcat.home>${project.build.directory}\tomcat</tomcat.home>
+                <tomcat.home>${project.build.directory}/tomcat</tomcat.home>
             </properties>
         </profile>
         <profile>
-            <id>arq-tomcat-cfx</id>
+            <id>arq-tomcat-cxf</id>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
