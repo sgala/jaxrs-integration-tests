@@ -37,18 +37,15 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-depchain</artifactId>
-            <type>pom</type>
+            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.protocol</groupId>
             <artifactId>arquillian-protocol-servlet</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -85,19 +82,21 @@
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-tomcat-embedded-8</artifactId>
+                    <artifactId>arquillian-tomcat-managed-8</artifactId>
                     <version>1.0.1.Final</version>
                 </dependency>
-                <dependency>
+<!--                <dependency>
                     <groupId>org.apache.tomcat.embed</groupId>
                     <artifactId>tomcat-embed-core</artifactId>
-                    <version>8.0.50</version>
+                    <version>8.5.29</version>
+                    <scope>provided</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.tomcat.embed</groupId>
                     <artifactId>tomcat-embed-jasper</artifactId>
-                    <version>8.0.50</version>
-                </dependency>
+                    <version>8.5.29</version>
+                    <scope>provided</scope>
+                </dependency>-->
 
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
@@ -117,19 +116,40 @@
                     <version>${resteasy.version}</version>
                 </dependency>
 
-                <dependency>
+<!--                <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-servlet-initializer</artifactId>
                     <version>${resteasy.version}</version>
-                </dependency>
+                </dependency>-->
             </dependencies>
             <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                    </testResource>
-                </testResources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>unpack tomcat</id>
+                                <phase>process-test-classes</phase>
+                                <configuration>
+                                    <target>
+                                        <unzip src="${project.basedir}\apache-tomcat-resteasy.zip"
+                                               dest="${project.build.directory}\tomcat"
+                                               overwrite="false"/>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
             </build>
+            <properties>
+                <tomcat.home>${project.build.directory}\tomcat</tomcat.home>
+            </properties>
         </profile>
         <profile>
             <id>arq-tomcat-cfx</id>
@@ -176,17 +196,25 @@
                     <version>2.1</version>
                 </dependency>
             </dependencies>
-            <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                    </testResource>
-                </testResources>
-            </build>
         </profile>
     </profiles>
 
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>arquillian.xml</include>
+                </includes>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <excludes>
+                    <exclude>arquillian.xml</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
