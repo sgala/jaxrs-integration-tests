@@ -12,7 +12,7 @@
     
     <context-param>
         <param-name>javax.ws.rs.core.Application</param-name>
-        <param-value>org.jboss.resteasy.test.core.basic.resource.FileExtensionMappingApplication</param-value>
+        <param-value>com.redhat.core.basic.resources.FileExtensionMappingApplication</param-value>
     </context-param>
 
     <servlet>

@@ -28,12 +28,12 @@
 
     <context-param>
         <param-name>resteasy.resources</param-name>
-        <param-value>org.jboss.resteasy.test.core.basic.resource.ContextService</param-value>
+        <param-value>com.redhat.core.basic.resource.ContextService</param-value>
     </context-param>
 
     <context-param>
         <param-name>resteasy.providers</param-name>
-        <param-value>org.jboss.resteasy.test.core.basic.resource.ContextAfterEncoderInterceptor,
+        <param-value>com.redhat.core.basic.resource.ContextAfterEncoderInterceptor,
             org.jboss.resteasy.test.core.basic.resource.ContextEncoderInterceptor,
             org.jboss.resteasy.test.core.basic.resource.ContextEndInterceptor,
             org.jboss.resteasy.test.core.basic.resource.ContextBeforeEncoderInterceptor
