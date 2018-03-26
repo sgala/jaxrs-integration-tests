@@ -130,6 +130,12 @@ public class TestUtil {
             war.addAsWebInfResource(resource, "web.xml");
         }
 
+
+        if (!war.contains("WEB-INF/web.xml")) {
+            war.addAsWebInfResource(TestApplication.class.getPackage(), "TestApplication.xml", "web.xml");
+        }
+
+
         // prepare class list for getClasses function of TestApplication class
         StringBuilder classes = new StringBuilder();
         boolean start = true;
@@ -160,6 +166,8 @@ public class TestUtil {
         if (System.getProperty("STORE_WAR") != null) {
             war.as(ZipExporter.class).exportTo(new File("target", war.getName()), true);
         }
+
+        //System.out.println(war.toString(true));
         return war;
     }
 
