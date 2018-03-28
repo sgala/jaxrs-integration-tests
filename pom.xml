@@ -15,6 +15,7 @@
         <version.org.wildfly>8.1.0.Final</version.org.wildfly>
         <cxf.version>3.2.2</cxf.version>
         <resteasy.version>3.5.0.Final</resteasy.version>
+        <jws.server.dir>${env.JWS_TOMCAT_DIR}</jws.server.dir>
     </properties>
 
     <dependencyManagement>
@@ -91,10 +92,93 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>arq-tomcat-resteasy</id>
+            <id>arq-jws-server</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-tomcat-managed-8</artifactId>
+                    <version>1.0.1.Final</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-servlet-api</artifactId>
+                    <version>8.5.29</version>
+                    <scope>provided</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jaxrs</artifactId>
+                    <version>${resteasy.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-client</artifactId>
+                    <version>${resteasy.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-validator-provider-11</artifactId>
+                    <version>${resteasy.version}</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>unpack tomcat</id>
+                                <phase>process-test-classes</phase>
+                                <configuration>
+                                    <target>
+                                        <!--download resteasy and copy to server lib -->
+                                        <get src="http://download.jboss.org/resteasy/resteasy-jaxrs-3.5.0.Final-all.zip"
+                                             dest="${project.build.directory}/resteasy-jaxrs-3.5.0.Final-all.zip" />
+                                        <unzip src="${project.build.directory}/resteasy-jaxrs-3.5.0.Final-all.zip"
+                                               dest="${project.build.directory}"
+                                               overwrite="true"/>
+                                        <copy todir="${jws.server.dir}/lib" overwrite="true">
+                                            <fileset dir="${project.build.directory}/resteasy-jaxrs-3.5.0.Final/lib"/>
+                                        </copy>
+
+                                        <!-- download jaxb and copy to server dir -->
+                                        <get src="https://search.maven.org/remotecontent?filepath=com/sun/xml/bind/jaxb-ri/2.3.0/jaxb-ri-2.3.0.zip"
+                                             dest="${project.build.directory}/jaxb-ri-2.3.0.zip" />
+                                        <unzip src="${project.build.directory}/jaxb-ri-2.3.0.zip"
+                                               dest="${project.build.directory}"
+                                               overwrite="true"/>
+                                        <copy todir="${jws.server.dir}/lib" overwrite="true">
+                                            <fileset dir="${project.build.directory}/jaxb-ri/lib"/>
+                                        </copy>
+
+                                        <!-- set tomcat user for arquillian -->
+                                        <copy file="${project.basedir}/src/test/resources/tomcat-users.xml"
+                                              tofile="${jws.server.dir}/conf/tomcat-users.xml" overwrite="true"/>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <properties>
+                <tomcat.home>C:\Users\ipenkov\Desktop\jws\jws-5.0\tomcat</tomcat.home>
+            </properties>
+        </profile>
+        <profile>
+            <id>arq-tomcat-resteasy</id>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -219,9 +303,9 @@
                     <systemPropertyVariables>
                         <node>127.0.0.1</node>
                     </systemPropertyVariables>
-<!--                    <includes>
-                        <include>com.redhat.core.basic.*Test.java</include>
-                    </includes>-->
+                    <includes>
+                        <include>com.redhat.client.*Test.java</include>
+                    </includes>
                 </configuration>
             </plugin>
             <plugin>
