@@ -305,9 +305,9 @@
                     <systemPropertyVariables>
                         <node>127.0.0.1</node>
                     </systemPropertyVariables>
-                    <includes>
+<!--                    <includes>
                         <include>com.redhat.client.*Test.java</include>
-                    </includes>
+                    </includes>-->
                 </configuration>
             </plugin>
             <plugin>
