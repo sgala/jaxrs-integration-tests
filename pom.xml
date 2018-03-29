@@ -15,7 +15,7 @@
         <version.org.wildfly>8.1.0.Final</version.org.wildfly>
         <cxf.version>3.2.2</cxf.version>
         <resteasy.version>3.5.0.Final</resteasy.version>
-        <jws.server.dir>${env.JWS_TOMCAT_DIR}</jws.server.dir>
+        <jws.home>${project.build.directory}/jws-5.0/tomcat</jws.home>
     </properties>
 
     <dependencyManagement>
@@ -140,13 +140,18 @@
                                 <phase>process-test-classes</phase>
                                 <configuration>
                                     <target>
+                                        <!--extract server -->
+                                        <unzip src="${env.HUDSON_STATIC_ENV}/ews/${env.EWS_VERSION}/jws-application-server-${env.EWS_VERSION}-RHEL7-x86_64.zip"
+                                               dest="${project.build.directory}"
+                                               overwrite="true"/>
+
                                         <!--download resteasy and copy to server lib -->
                                         <get src="http://download.jboss.org/resteasy/resteasy-jaxrs-3.5.0.Final-all.zip"
                                              dest="${project.build.directory}/resteasy-jaxrs-3.5.0.Final-all.zip" />
                                         <unzip src="${project.build.directory}/resteasy-jaxrs-3.5.0.Final-all.zip"
                                                dest="${project.build.directory}"
                                                overwrite="true"/>
-                                        <copy todir="${jws.server.dir}/lib" overwrite="true">
+                                        <copy todir="${jws.home}/lib" overwrite="true">
                                             <fileset dir="${project.build.directory}/resteasy-jaxrs-3.5.0.Final/lib"/>
                                         </copy>
 
@@ -156,13 +161,13 @@
                                         <unzip src="${project.build.directory}/jaxb-ri-2.3.0.zip"
                                                dest="${project.build.directory}"
                                                overwrite="true"/>
-                                        <copy todir="${jws.server.dir}/lib" overwrite="true">
+                                        <copy todir="${jws.home}/lib" overwrite="true">
                                             <fileset dir="${project.build.directory}/jaxb-ri/lib"/>
                                         </copy>
 
                                         <!-- set tomcat user for arquillian -->
                                         <copy file="${project.basedir}/src/test/resources/tomcat-users.xml"
-                                              tofile="${jws.server.dir}/conf/tomcat-users.xml" overwrite="true"/>
+                                              tofile="${jws.home}/conf/tomcat-users.xml" overwrite="true"/>
                                     </target>
                                 </configuration>
                                 <goals>
@@ -173,9 +178,6 @@
                     </plugin>
                 </plugins>
             </build>
-            <properties>
-                <tomcat.home>C:\Users\ipenkov\Desktop\jws\jws-5.0\tomcat</tomcat.home>
-            </properties>
         </profile>
         <profile>
             <id>arq-tomcat-resteasy</id>
