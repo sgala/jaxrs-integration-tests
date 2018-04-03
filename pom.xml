@@ -89,6 +89,11 @@
             <artifactId>javax.ejb-api</artifactId>
             <version>3.2.1</version>
         </dependency>
+        <dependency>
+            <groupId>javax.json</groupId>
+            <artifactId>javax.json-api</artifactId>
+            <version>1.1.2</version>
+        </dependency>
     </dependencies>
     <profiles>
         <profile>
@@ -213,33 +218,8 @@
                     <version>${resteasy.version}</version>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>1.8</version>
-                        <executions>
-                            <execution>
-                                <id>unpack tomcat</id>
-                                <phase>process-test-classes</phase>
-                                <configuration>
-                                    <target>
-                                        <unzip src="${project.basedir}/apache-tomcat-resteasy.zip"
-                                               dest="${project.build.directory}/tomcat"
-                                               overwrite="false"/>
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
             <properties>
-                <tomcat.home>${project.build.directory}/tomcat</tomcat.home>
+                <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0\tomcat</jws.home>
             </properties>
         </profile>
         <profile>
