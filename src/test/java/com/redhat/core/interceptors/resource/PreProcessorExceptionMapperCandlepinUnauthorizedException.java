@@ -1,0 +1,4 @@
+package com.redhat.core.interceptors.resource;
+
+public class PreProcessorExceptionMapperCandlepinUnauthorizedException extends PreProcessorExceptionMapperCandlepinException {
+}
