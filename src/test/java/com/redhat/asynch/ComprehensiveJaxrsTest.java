@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -80,7 +79,7 @@ public class ComprehensiveJaxrsTest
    @Before
    public void beforeTest()
    {
-      client = new ResteasyClientBuilder().connectionPoolSize(10).build();
+      client = ClientBuilder.newClient();
    }
 
    @After

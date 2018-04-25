@@ -9,6 +9,7 @@ import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.wildfly.extras.creaper.core.ManagementClient;
 import org.wildfly.extras.creaper.core.online.ModelNodeResult;
 import org.wildfly.extras.creaper.core.online.OnlineManagementClient;
@@ -59,6 +60,9 @@ public class TestUtil {
      */
     public static WebArchive prepareArchive(String deploymentName) {
         WebArchive war = ShrinkWrap.create(WebArchive.class, deploymentName + ".war");
+/*        File[] files = Maven.resolver().loadPomFromFile("pom.xml")
+                .importRuntimeDependencies().resolve().withTransitivity().asFile();
+        war.addAsLibraries(files);*/
         war.addClass(TestApplication.class);
         return war;
     }

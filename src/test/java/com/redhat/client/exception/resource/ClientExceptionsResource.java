@@ -1,6 +1,7 @@
 package com.redhat.client.exception.resource;
 
-import org.jboss.resteasy.util.HttpResponseCodes;
+
+import com.redhat.utils.HttpResponseCodes;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

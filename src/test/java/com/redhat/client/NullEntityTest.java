@@ -5,16 +5,16 @@ import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 
@@ -40,8 +40,8 @@ public class NullEntityTest extends ClientTestBase{
      */
     @Test
     public void testPostNull() {
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        ResteasyWebTarget target = client.target(generateURL("/null"));
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(generateURL("/null"));
         String response = target.request().post(null, String.class);
         Assert.assertEquals("Wrong response", "", response);
         client.close();
@@ -53,8 +53,8 @@ public class NullEntityTest extends ClientTestBase{
      */
     @Test
     public void testEntity() {
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        ResteasyWebTarget target = client.target(generateURL("/entity"));
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(generateURL("/entity"));
         String response = target.request().post(Entity.entity(null, MediaType.WILDCARD), String.class);
         Assert.assertEquals("Wrong response", "", response);
         client.close();
@@ -66,8 +66,8 @@ public class NullEntityTest extends ClientTestBase{
      */
     @Test
     public void testForm() {
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        ResteasyWebTarget target = client.target(generateURL("/form"));
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(generateURL("/form"));
         String response = target.request().post(Entity.form((Form) null), String.class);
         Assert.assertEquals("Wrong response", null, response);
         client.close();
@@ -79,8 +79,8 @@ public class NullEntityTest extends ClientTestBase{
      */
     @Test
     public void testHtml() {
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        ResteasyWebTarget target = client.target(generateURL("/html"));
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(generateURL("/html"));
         String response = target.request().post(Entity.html(null), String.class);
         Assert.assertEquals("Wrong response", "", response);
         client.close();
@@ -92,8 +92,8 @@ public class NullEntityTest extends ClientTestBase{
      */
     @Test
     public void testXhtml() {
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        ResteasyWebTarget target = client.target(generateURL("/xhtml"));
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(generateURL("/xhtml"));
         String response = target.request().post(Entity.xhtml(null), String.class);
         Assert.assertEquals("Wrong response", "", response);
         client.close();
@@ -105,8 +105,8 @@ public class NullEntityTest extends ClientTestBase{
      */
     @Test
     public void testXml() {
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        ResteasyWebTarget target = client.target(generateURL("/xml"));
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(generateURL("/xml"));
         String response = target.request().post(Entity.xml(null), String.class);
         Assert.assertEquals("Wrong response", "", response);
         client.close();

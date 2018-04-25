@@ -1,6 +1,7 @@
 package com.redhat.client.proxy.resource;
 
-import org.jboss.resteasy.util.HttpHeaderNames;
+
+import com.redhat.utils.HttpHeaderNames;
 
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientResponseContext;

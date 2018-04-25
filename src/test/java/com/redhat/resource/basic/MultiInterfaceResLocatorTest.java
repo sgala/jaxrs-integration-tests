@@ -10,7 +10,6 @@ import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
@@ -18,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 /**
@@ -47,7 +47,7 @@ public class MultiInterfaceResLocatorTest {
      */
     @Test
     public void test() throws Exception {
-        Client client = new ResteasyClientBuilder().build();
+        Client client = ClientBuilder.newClient();
         Response response = client.target(generateURL("/test/hello1/")).request().get();
         String entity = response.readEntity(String.class);
         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());

@@ -15,7 +15,6 @@ import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.AfterClass;
@@ -25,6 +24,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.concurrent.Future;
@@ -42,7 +42,7 @@ public class CallbackTest {
 
     @BeforeClass
     public static void initClient() {
-        client = new ResteasyClientBuilder().connectionPoolSize(10).build();
+        client = ClientBuilder.newClient();
     }
 
     @AfterClass

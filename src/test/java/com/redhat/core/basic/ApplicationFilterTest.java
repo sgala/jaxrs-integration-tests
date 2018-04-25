@@ -2,14 +2,12 @@ package com.redhat.core.basic;
 
 import com.redhat.core.basic.resources.ApplicationFilterCustomer;
 import com.redhat.core.basic.resources.ApplicationFilterCustomerResource;
+import com.redhat.utils.HttpResponseCodes;
 import com.redhat.utils.PortProviderUtil;
 import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.util.HttpResponseCodes;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -19,6 +17,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import java.io.BufferedReader;
@@ -39,7 +39,7 @@ import java.util.List;
 @RunAsClient
 public class ApplicationFilterTest {
 
-    private static ResteasyClient client;
+    private static Client client;
 
     @Deployment
     public static Archive<?> deploySimpleResource() {
@@ -58,7 +58,7 @@ public class ApplicationFilterTest {
 
     @Before
     public void setup() {
-        client = new ResteasyClientBuilder().build();
+        client = ClientBuilder.newClient();
     }
 
     @After

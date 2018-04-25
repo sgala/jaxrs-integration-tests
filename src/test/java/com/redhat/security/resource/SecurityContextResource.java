@@ -1,6 +1,7 @@
 package com.redhat.security.resource;
 
-import org.jboss.resteasy.util.HttpResponseCodes;
+
+import com.redhat.utils.HttpResponseCodes;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

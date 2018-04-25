@@ -1,6 +1,7 @@
 package com.redhat.resource.request.resource;
 
-import org.jboss.resteasy.util.DateUtil;
+
+import com.redhat.utils.DateUtil;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

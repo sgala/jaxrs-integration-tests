@@ -1,9 +1,9 @@
 package com.redhat.resource.basic.resource;
 
 import com.redhat.resource.basic.ReponseInfoTest;
+import com.redhat.utils.HttpHeaderNames;
 import com.redhat.utils.PortProviderUtil;
 import org.jboss.logging.Logger;
-import org.jboss.resteasy.util.HttpHeaderNames;
 import org.junit.Assert;
 
 import javax.ws.rs.GET;

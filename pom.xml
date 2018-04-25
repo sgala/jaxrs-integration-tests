@@ -219,7 +219,7 @@
                 </dependency>
             </dependencies>
             <properties>
-                <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0\tomcat</jws.home>
+                <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0-resteasy\tomcat</jws.home>
             </properties>
         </profile>
         <profile>
@@ -230,7 +230,6 @@
                     <artifactId>arquillian-tomcat-managed-8</artifactId>
                     <version>1.0.1.Final</version>
                 </dependency>
-
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
                     <artifactId>cxf-rt-transports-http</artifactId>
@@ -238,13 +237,13 @@
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-                    <version>${cxf.version}</version>
+                    <artifactId>cxf-rt-rs-client</artifactId>
+                    <version>3.1.15</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-rt-rs-client</artifactId>
-                    <version>3.1.15</version>
+                    <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+                    <version>${cxf.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
@@ -256,7 +255,21 @@
                     <artifactId>javax.ws.rs-api</artifactId>
                     <version>2.1</version>
                 </dependency>
+                <dependency>
+                    <groupId>javax.validation</groupId>
+                    <artifactId>validation-api</artifactId>
+                    <version>2.0.1.Final</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                    <version>4.0.1</version>
+                </dependency>
+
             </dependencies>
+            <properties>
+                <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0-cxf\tomcat</jws.home>
+            </properties>
         </profile>
     </profiles>
 
@@ -286,7 +299,7 @@
                         <node>127.0.0.1</node>
                     </systemPropertyVariables>
 <!--                    <includes>
-                        <include>com.redhat.client.*Test.java</include>
+                        <include>com.redhat.core.basic.AppConfigTest.java</include>
                     </includes>-->
                 </configuration>
             </plugin>

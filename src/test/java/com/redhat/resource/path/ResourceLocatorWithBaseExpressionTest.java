@@ -5,6 +5,7 @@ import com.redhat.resource.path.resource.ResourceLocatorWithBaseExpressionSubres
 import com.redhat.resource.path.resource.ResourceLocatorWithBaseExpressionSubresource2;
 import com.redhat.resource.path.resource.ResourceLocatorWithBaseExpressionSubresource3;
 import com.redhat.resource.path.resource.ResourceLocatorWithBaseExpressionSubresource3Interface;
+import com.redhat.utils.HttpServletResponse;
 import com.redhat.utils.PortProviderUtil;
 import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -18,7 +19,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;

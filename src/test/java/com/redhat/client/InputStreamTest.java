@@ -8,8 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
@@ -21,6 +19,8 @@ import org.junit.runner.RunWith;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import java.io.InputStream;
 
 
@@ -46,7 +46,7 @@ public class InputStreamTest extends ClientTestBase{
 
     protected static final Logger logger = LogManager.getLogger(InputStreamTest.class.getName());
 
-    static ResteasyClient client;
+    static Client client;
 
     @Deployment
     public static Archive<?> deploy() {
@@ -57,7 +57,7 @@ public class InputStreamTest extends ClientTestBase{
 
     @Before
     public void init() {
-        client = new ResteasyClientBuilder().build();
+        client = ClientBuilder.newClient();
     }
 
     @After
@@ -78,22 +78,6 @@ public class InputStreamTest extends ClientTestBase{
         String str = new String(buf);
         Assert.assertEquals("The returned inputStream doesn't contain expexted text", "hello world", str);
         logger.info("Text from inputstream: " + str);
-        is.close();
-    }
-
-    /**
-     * @tpTestDetails Client sends GET request with requested return type of InputStream. The request is created
-     * via client proxy
-     * @tpPassCrit The response with expected Exception text is returned
-     * @tpSince RESTEasy 3.0.16
-     */
-    @Test
-    public void testInputStreamProxy() throws Exception {
-        InputStreamInterface proxy = client.target(generateURL("/")).proxy(InputStreamInterface.class);
-        InputStream is = proxy.get();
-        byte[] buf = IOUtils.toByteArray(is);
-        String str = new String(buf);
-        Assert.assertEquals("The returned inputStream doesn't contain expexted text", "hello world", str);
         is.close();
     }
 
