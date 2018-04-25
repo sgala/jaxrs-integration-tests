@@ -52,6 +52,7 @@ public class AbortMessageTest {
                new RuntimePermission("accessDeclaredMembers")
        ), "permissions.xml");
        return TestUtil.finishContainerPrepare(war, null, AbortMessageResourceFilter.class);
+
    }
 
    private String generateURL(String path) {

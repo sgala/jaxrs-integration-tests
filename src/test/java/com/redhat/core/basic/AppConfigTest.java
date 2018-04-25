@@ -14,6 +14,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,6 +23,7 @@ import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import java.io.File;
 
 
 /**
@@ -39,9 +41,15 @@ public class AppConfigTest {
     @Deployment
     public static Archive<?> deploySimpleResource() {
         WebArchive war = ShrinkWrap.create(WebArchive.class, AppConfigTest.class.getSimpleName() + ".war");
+
+        File[] files = Maven.resolver().loadPomFromFile(System.getProperty("pom"))
+                .importRuntimeDependencies().resolve().withTransitivity().asFile();
+        war.addAsLibraries(files);
+
         war.addClass(AppConfigResources.class);
         war.addClass(AppConfigApplication.class);
         war.addAsWebInfResource(AppConfigTest.class.getPackage(), "AppConfigWeb.xml", "web.xml");
+        System.out.println(war.toString(true));
         return war;
     }
 

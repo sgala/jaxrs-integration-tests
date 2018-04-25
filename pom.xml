@@ -98,9 +98,6 @@
     <profiles>
         <profile>
             <id>arq-jws-server</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -171,7 +168,7 @@
                                         </copy>
 
                                         <!-- set tomcat user for arquillian -->
-                                        <copy file="${project.basedir}/src/test/resources/tomcat-users.xml"
+                                        <copy file="${project.basedir}/src/test/resources/resteasy/tomcat-users.xml"
                                               tofile="${jws.home}/conf/tomcat-users.xml" overwrite="true"/>
                                     </target>
                                 </configuration>
@@ -218,12 +215,26 @@
                     <version>${resteasy.version}</version>
                 </dependency>
             </dependencies>
+
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources/resteasy</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                </testResources>
+            </build>
+
             <properties>
-                <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0-resteasy\tomcat</jws.home>
+                <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0-cxf\tomcat</jws.home>
+                <dep.pom>pom.xml</dep.pom>
             </properties>
         </profile>
         <profile>
             <id>arq-tomcat-cxf</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -269,26 +280,20 @@
             </dependencies>
             <properties>
                 <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0-cxf\tomcat</jws.home>
+                <dep.pom>pom1.xml</dep.pom>
             </properties>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources/cxf</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                </testResources>
+            </build>
         </profile>
     </profiles>
 
     <build>
-        <testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>arquillian.xml</include>
-                </includes>
-            </testResource>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <excludes>
-                    <exclude>arquillian.xml</exclude>
-                </excludes>
-            </testResource>
-        </testResources>
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -297,10 +302,11 @@
                     <failIfNoTests>false</failIfNoTests>
                     <systemPropertyVariables>
                         <node>127.0.0.1</node>
+                        <pom>${dep.pom}</pom>
                     </systemPropertyVariables>
-<!--                    <includes>
+                    <includes>
                         <include>com.redhat.core.basic.AppConfigTest.java</include>
-                    </includes>-->
+                    </includes>
                 </configuration>
             </plugin>
             <plugin>

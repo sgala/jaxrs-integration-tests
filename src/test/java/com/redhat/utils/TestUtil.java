@@ -60,9 +60,9 @@ public class TestUtil {
      */
     public static WebArchive prepareArchive(String deploymentName) {
         WebArchive war = ShrinkWrap.create(WebArchive.class, deploymentName + ".war");
-/*        File[] files = Maven.resolver().loadPomFromFile("pom.xml")
+        File[] files = Maven.resolver().loadPomFromFile(System.getProperty("pom"))
                 .importRuntimeDependencies().resolve().withTransitivity().asFile();
-        war.addAsLibraries(files);*/
+        war.addAsLibraries(files);
         war.addClass(TestApplication.class);
         return war;
     }
@@ -171,7 +171,7 @@ public class TestUtil {
             war.as(ZipExporter.class).exportTo(new File("target", war.getName()), true);
         }
 
-        //System.out.println(war.toString(true));
+        System.out.println(war.toString(true));
         return war;
     }
 
