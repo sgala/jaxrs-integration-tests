@@ -41,9 +41,11 @@ public class ApplicationConfigTest {
     @Deployment
     public static Archive<?> deploySimpleResource() {
         WebArchive war = ShrinkWrap.create(WebArchive.class, ApplicationConfigTest.class.getSimpleName() + ".war");
-        File[] files = Maven.resolver().loadPomFromFile("pom.xml")
+
+        File[] files = Maven.resolver().loadPomFromFile(System.getProperty("pom"))
                 .importRuntimeDependencies().resolve().withTransitivity().asFile();
         war.addAsLibraries(files);
+
         war.addClasses(ApplicationConfig.class, ApplicationConfigInjectionResource.class, ApplicationConfigInterface.class,
                 ApplicationConfigQuotedTextWriter.class, ApplicationConfigResource.class,
                 ApplicationConfigService.class);

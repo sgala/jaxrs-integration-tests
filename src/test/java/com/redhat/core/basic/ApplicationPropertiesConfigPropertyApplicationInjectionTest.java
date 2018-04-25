@@ -36,7 +36,7 @@ public class ApplicationPropertiesConfigPropertyApplicationInjectionTest {
     @Deployment
     public static Archive<?> deploySimpleResource() {
         WebArchive war = ShrinkWrap.create(WebArchive.class, ApplicationPropertiesConfigPropertyApplicationInjectionTest.class.getSimpleName() + ".war");
-        File[] files = Maven.resolver().loadPomFromFile("pom.xml")
+        File[] files = Maven.resolver().loadPomFromFile(System.getProperty("pom"))
                 .importRuntimeDependencies().resolve().withTransitivity().asFile();
         war.addAsLibraries(files);
         war.addClasses(ApplicationPropertiesConfigPropertyApplicationInjection.class, ApplicationPropertiesConfigPropertyApplicationInjectionResource.class,

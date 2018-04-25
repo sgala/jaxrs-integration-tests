@@ -171,7 +171,7 @@ public class TestUtil {
             war.as(ZipExporter.class).exportTo(new File("target", war.getName()), true);
         }
 
-        System.out.println(war.toString(true));
+        //System.out.println(war.toString(true));
         return war;
     }
 

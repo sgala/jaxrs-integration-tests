@@ -227,14 +227,11 @@
 
             <properties>
                 <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0-cxf\tomcat</jws.home>
-                <dep.pom>pom.xml</dep.pom>
+                <dep.pom>pom-resteasy.xml</dep.pom>
             </properties>
         </profile>
         <profile>
             <id>arq-tomcat-cxf</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -305,7 +302,7 @@
                         <pom>${dep.pom}</pom>
                     </systemPropertyVariables>
                     <includes>
-                        <include>com.redhat.core.basic.AppConfigTest.java</include>
+                        <include>com.redhat.client.*Test.java</include>
                     </includes>
                 </configuration>
             </plugin>
