@@ -2,15 +2,25 @@
 
 ##To run execute maven test goal:
 
-`mvn test` or `mvn test -P arq-tomcat-resteasy` - test Resteasy implementation
+Set up the following environmental variables:  
+export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0/  
+export PATH=$JAVA_HOME/bin:/opt/apache-maven-3.3.9/bin:$PATH  
+export HUDSON_STATIC_ENV=/qa/services/hudson/STATIC/  
+export WORKSPACE_BASEDIR=/tmp/jaxrs-integration-test  
 
-`mvn test -P arq-tomcat-cxf` - test CXF implementation (does not work yet)
+Then user maven tu run the tests:  
+`mvn test -P arq-jws-server-cxf` - test Resteasy implementation  
+`mvn test -P arq-jws-server-resteasy` - test CXF implementation  
+
+For local testing, change <jws.home> parameter to point to existing tomcat instance and use:  
+`mvn test -P arq-tomcat-resteasy` - test Resteasy implementation  
+`mvn test -P arq-tomcat-cxf` - test CXF implementation  
 
 ##How it works:
 
-Uses Arquillian with Tomcat managed instance. There are preconfigured bundled server archives for each of the implementations.
+Uses Arquillian with Tomcat managed instance.
 When the maven test goal is run the appropriate server is unpacked into target directory and started.
-Arquillian creates a separate WAR file for each test group, deploys it to the server and executes the tests.
+Arquillian creates a separate WAR file for each test group containing all needed dependencies, deploys it to the server and executes the tests.
 
 ##High level structure:
 

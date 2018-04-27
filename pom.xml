@@ -377,9 +377,10 @@
                         <node>127.0.0.1</node>
                         <pom>${dep.pom}</pom>
                     </systemPropertyVariables>
-                    <includes>
+                    <!-- use this if you need to run specific test only -->
+<!--                    <includes>
                         <include>com.redhat.client.*Test.java</include>
-                    </includes>
+                    </includes>-->
                 </configuration>
             </plugin>
             <plugin>
