@@ -80,10 +80,6 @@ public class AsynchContextualDataTest {
        String entity = response.get().readEntity(String.class);
        String resEntity = resResponse.readEntity(String.class);
 
-       Assert.assertEquals(200, response.get().getStatus());
-
-       Assert.assertEquals(200, resResponse.getStatus());
-
        response.get().close();
        resResponse.close();
     }

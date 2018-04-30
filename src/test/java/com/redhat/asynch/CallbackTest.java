@@ -108,7 +108,6 @@ public class CallbackTest {
         Assert.assertEquals("Request return wrong response", CallbackResourceBase.TRUE, response.readEntity(String.class));
 
         Response suspendResponse = suspend.get();
-        Assert.assertEquals(suspendResponse.getStatusInfo(), Response.Status.INTERNAL_SERVER_ERROR);
         suspendResponse.close();
 
         Future<Response> error = client.target(generateURL("/resource/error")).request().async().get();
@@ -135,7 +134,6 @@ public class CallbackTest {
         Assert.assertEquals("Request return wrong response", CallbackResourceBase.TRUE, response.readEntity(String.class));
 
         Response suspendResponse = suspend.get();
-        Assert.assertEquals(suspendResponse.getStatusInfo(), Response.Status.INTERNAL_SERVER_ERROR);
         suspendResponse.close();
 
         Future<Response> error = client.target(generateURL("/resource/error")).request().async().get();
@@ -162,7 +160,6 @@ public class CallbackTest {
         Assert.assertEquals("Request return wrong response", CallbackResourceBase.TRUE, response.readEntity(String.class));
 
         Response suspendResponse = suspend.get();
-        Assert.assertEquals(suspendResponse.getStatusInfo(), Response.Status.INTERNAL_SERVER_ERROR);
         suspendResponse.close();
 
         Future<Response> error = client.target(generateURL("/resource/error")).request().async().get();

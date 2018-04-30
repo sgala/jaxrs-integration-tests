@@ -44,7 +44,7 @@ public class JaxrsAsyncTest {
     @Test
     public void testSuccess() throws Exception {
         Client client = ClientBuilder.newClient();
-        Response response = client.target(generateURL("")).request().get();
+        Response response = client.target(generateURL("/")).request().get();
         Assert.assertEquals(200, response.getStatus());
         Assert.assertEquals("Wrong response", "hello", response.readEntity(String.class));
         response.close();

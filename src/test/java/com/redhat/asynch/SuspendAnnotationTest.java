@@ -46,7 +46,7 @@ public class SuspendAnnotationTest {
     @Test
     public void testPositive() throws Exception {
         Client client = ClientBuilder.newClient();
-        Response response = client.target(generateURL("")).request().get();
+        Response response = client.target(generateURL("/")).request().get();
 
         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
         Assert.assertEquals("Wrong content of response", "hello", response.readEntity(String.class));
