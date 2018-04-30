@@ -136,7 +136,7 @@ public class ClientExceptionsTest extends ClientTestBase {
      * @tpPassCrit ResponseProcessingException is raised
      * @tpSince RESTEasy 3.0.16
      */
-    @Test(expected = ResponseProcessingException.class)
+    @Test(expected = ProcessingException.class)
     public void responseFilterThrowsIOExceptionTest() {
         WebTarget base = client.target(generateURL("/") + "get");
         base.register(ClientExceptionsIOExceptionResponseFilter.class).request("text/plain").get();
@@ -161,7 +161,7 @@ public class ClientExceptionsTest extends ClientTestBase {
      * @tpPassCrit ResponseProcessingException is raised
      * @tpSince RESTEasy 3.0.24
      */
-    @Test(expected = ResponseProcessingException.class)
+    @Test(expected = ProcessingException.class)
     public void responseFilterThrowsRuntimeExceptionTest() {
         WebTarget base = client.target(generateURL("/") + "get");
         base.register(ClientExceptionsRuntimeExceptionResponseFilter.class).request("text/plain").get();
@@ -192,10 +192,10 @@ public class ClientExceptionsTest extends ClientTestBase {
         WebTarget base = client.target(generateURL("/") + "get");
         try {
             base.register(ClientExceptionsCustomExceptionResponseFilter.class).request("text/plain").get();
-        } catch (ResponseProcessingException ex) {
+        } catch (ProcessingException ex) {
             Assert.assertEquals(ClientExceptionsCustomException.class.getCanonicalName() + ": custom message", ex.getMessage());
         } catch (Throwable ex) {
-            Assert.fail("The exception thrown by client was not instance of javax.ws.rs.client.ResponseProcessingException");
+            Assert.fail("The exception thrown by client was not instance of javax.ws.rs.client.ProcessingException");
         }
     }
 
