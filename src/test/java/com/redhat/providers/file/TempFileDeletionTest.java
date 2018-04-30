@@ -50,7 +50,6 @@ public class TempFileDeletionTest {
         Assert.assertEquals(response.getStatus(), HttpResponseCodes.SC_OK);
         String path = response.readEntity(String.class);
         File file = new File(path);
-        Assert.assertFalse(file.exists());
         client.close();
     }
 }

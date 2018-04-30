@@ -10,6 +10,7 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.Client;
@@ -167,6 +168,7 @@ public class SseEnablingTest {
 	// ...
 	// }
 	@Test
+	@Category(com.redhat.utils.RCategory.class)
 	public void testAcceptSseServerSseEvent() throws Exception {
 
 		Client client = ClientBuilder.newClient();
