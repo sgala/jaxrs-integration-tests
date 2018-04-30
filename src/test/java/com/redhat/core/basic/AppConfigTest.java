@@ -49,7 +49,6 @@ public class AppConfigTest {
         war.addClass(AppConfigResources.class);
         war.addClass(AppConfigApplication.class);
         war.addAsWebInfResource(AppConfigTest.class.getPackage(), "AppConfigWeb.xml", "web.xml");
-        System.out.println(war.toString(true));
         return war;
     }
 

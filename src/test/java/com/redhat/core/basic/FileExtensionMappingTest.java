@@ -3,6 +3,7 @@ package com.redhat.core.basic;
 import com.redhat.core.basic.resources.FileExtensionMappingApplication;
 import com.redhat.core.basic.resources.FileExtensionMappingResource;
 import com.redhat.utils.PortProviderUtil;
+import com.redhat.utils.RCategory;
 import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -13,6 +14,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.Client;
@@ -27,6 +29,7 @@ import javax.ws.rs.core.Response;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
+@Category(RCategory.class)
 public class FileExtensionMappingTest
 {
    static Client client;
@@ -47,7 +50,6 @@ public class FileExtensionMappingTest
        war.addClass(FileExtensionMappingApplication.class);
        war.addAsWebInfResource(FileExtensionMappingTest.class.getPackage(), "FileExtensionMapping.xml", "web.xml");
        Archive<?> archive = TestUtil.finishContainerPrepare(war, null, FileExtensionMappingResource.class);
-//       System.out.println(archive.toString(true));
        return archive;
    }
 

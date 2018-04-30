@@ -353,6 +353,7 @@
             <properties>
                 <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0-cxf\tomcat</jws.home>
                 <dep.pom>pom1.xml</dep.pom>
+                <category>com.redhat.utils.RCategory</category>
             </properties>
 
             <build>
@@ -379,8 +380,9 @@
                     </systemPropertyVariables>
                     <!-- use this if you need to run specific test only -->
 <!--                    <includes>
-                        <include>com.redhat.client.*Test.java</include>
+                        <include>com.redhat.core.basic.NullHeaderTest</include>
                     </includes>-->
+                    <excludedGroups>${category}</excludedGroups>
                 </configuration>
             </plugin>
             <plugin>

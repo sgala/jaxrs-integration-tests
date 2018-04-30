@@ -49,6 +49,7 @@ public class ApplicationConfigTest {
         war.addClasses(ApplicationConfig.class, ApplicationConfigInjectionResource.class, ApplicationConfigInterface.class,
                 ApplicationConfigQuotedTextWriter.class, ApplicationConfigResource.class,
                 ApplicationConfigService.class);
+        war.addAsWebInfResource(ApplicationConfigTest.class.getPackage(), "ApplicationConfigWeb.xml", "web.xml");
         return war;
     }
 
@@ -59,7 +60,8 @@ public class ApplicationConfigTest {
 
     @AfterClass
     public static void after() throws Exception {
-        client.close();
+        if (client != null)
+            client.close();
     }
 
     private String generateURL(String path) {
