@@ -10,6 +10,7 @@ import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.junit.Assert;
 import org.wildfly.extras.creaper.core.ManagementClient;
 import org.wildfly.extras.creaper.core.online.ModelNodeResult;
 import org.wildfly.extras.creaper.core.online.OnlineManagementClient;
@@ -42,6 +43,7 @@ public class TestUtil {
             .append("src").append(File.separator)
             .append("aq.test").append(File.separator)
             .append("resources").append(File.separator).toString();
+
     /**
      * Try to initialize logger. This is unsuccessful on EAP deployment, because EAP do not contain log4j.
      * Logger is not necessary for this class. Some methods could be used without it.
@@ -53,6 +55,7 @@ public class TestUtil {
             // unable to initialize logger, finishContainerPrepare method could not be used
         }
     }
+
     /**
      * Initialize deployment.
      *
@@ -69,7 +72,7 @@ public class TestUtil {
 
     /**
      * Finish preparing war deployment and deploy it.
-     *
+     * <p>
      * Add classes in @resources to deployment. Also all sub-classes of classes in @resources are added to deployment.
      * But only classes in @resources (not sub-classes of classes in @resources) can be used as resources
      * (getClasses function of TestApplication class return only classes in @resources).
@@ -82,13 +85,13 @@ public class TestUtil {
 
     /**
      * Finish preparing war deployment and deploy it.
-     *
+     * <p>
      * Add classes in @resources to deployment. Also all sub-classes of classes in @resources are added to deployment.
      * But only classes in @resources (not sub-classes of classes in @resources) can be used as resources
      * (getClasses function of TestApplication class return only classes in @resources).
      *
      * @param singletons classes used in deployment as singletons
-     * @param resources classes used in deployment as resources
+     * @param resources  classes used in deployment as resources
      */
     public static Archive<?> finishContainerPrepare(WebArchive war, Map<String, String> contextParams, List<Class<?>> singletons, final Class<?>... resources) {
 
@@ -177,10 +180,10 @@ public class TestUtil {
 
     public static OnlineManagementClient clientInit() throws IOException {
         OnlineOptions onlineOptions = OnlineOptions
-                    .standalone()
-                    .hostAndPort(PortProviderUtil.getHost(), 9990) // 9990 is default port for EAP 7
-                    .connectionTimeout(120000)
-                    .build();
+                .standalone()
+                .hostAndPort(PortProviderUtil.getHost(), 9990) // 9990 is default port for EAP 7
+                .connectionTimeout(120000)
+                .build();
         return ManagementClient.online(onlineOptions);
     }
 
@@ -327,4 +330,5 @@ public class TestUtil {
         }
         return count;
     }
+
 }
