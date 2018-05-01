@@ -379,9 +379,9 @@
                         <pom>${dep.pom}</pom>
                     </systemPropertyVariables>
                     <!-- use this if you need to run specific test only -->
-                    <includes>
-                        <include>com.redhat.resource.basic.MatchedResourceTest</include>
-                    </includes>
+<!--                    <includes>
+                        <include>com.redhat.asynch.**</include>
+                    </includes>-->
                     <excludedGroups>${category}</excludedGroups>
                 </configuration>
             </plugin>
