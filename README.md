@@ -9,8 +9,8 @@ export HUDSON_STATIC_ENV=/qa/services/hudson/STATIC/
 export WORKSPACE_BASEDIR=/tmp/jaxrs-integration-test  
 
 Then user maven tu run the tests:  
-`mvn test -P arq-jws-server-cxf` - test Resteasy implementation  
-`mvn test -P arq-jws-server-resteasy` - test CXF implementation  
+`mvn test -P arq-jws-server-cxf` - test CXF implementation  
+`mvn test -P arq-jws-server-resteasy` - test Resteasy implementation  
 
 For local testing, change <jws.home> parameter to point to existing tomcat instance and use:  
 `mvn test -P arq-tomcat-resteasy` - test Resteasy implementation  

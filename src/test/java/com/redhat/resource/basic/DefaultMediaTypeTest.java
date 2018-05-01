@@ -74,7 +74,6 @@ public class DefaultMediaTypeTest {
             baos.write(i);
         }
         Response response = target.request().post(Entity.entity(baos.toByteArray(), MediaType.APPLICATION_OCTET_STREAM));
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
         String responseContent = response.readEntity(String.class);
         logger.info(String.format("Response: %s", responseContent));
     }
@@ -91,7 +90,6 @@ public class DefaultMediaTypeTest {
             baos.write(i);
         }
         Response response = target.request().post(Entity.entity(baos.toByteArray(), MediaType.APPLICATION_OCTET_STREAM));
-        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
         String responseContent = response.readEntity(String.class);
         logger.info(String.format("Response: %s", responseContent));
     }
