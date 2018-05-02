@@ -22,6 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
@@ -188,6 +189,7 @@ public class ClientExceptionsTest extends ClientTestBase {
      * @tpSince RESTEasy 3.0.24
      */
     @Test
+    @Category(com.redhat.utils.RCategory.class)
     public void responseFilterThrowsCustomExceptionTest() {
         WebTarget base = client.target(generateURL("/") + "get");
         try {
@@ -207,6 +209,7 @@ public class ClientExceptionsTest extends ClientTestBase {
      * @tpSince RESTEasy 3.0.24
      */
     @Test
+    @Category(com.redhat.utils.RCategory.class)
     public void requestFilterThrowsCustomExceptionTest() {
         WebTarget base = client.target(generateURL("/") + "get");
         try {
