@@ -217,6 +217,7 @@
             </dependencies>
             <properties>
                 <dep.pom>pom1.xml</dep.pom>
+                <category>com.redhat.utils.RCategory</category>
             </properties>
             <build>
                 <testResources>
@@ -379,9 +380,9 @@
                         <pom>${dep.pom}</pom>
                     </systemPropertyVariables>
                     <!-- use this if you need to run specific test only -->
-<!--                    <includes>
-                        <include>com.redhat.resource.basic.UriInfoTest</include>
-                    </includes>-->
+                    <includes>
+                        <include>com.redhat.core.basic.InvalidMediaTypeTest</include>
+                    </includes>
                     <excludedGroups>${category}</excludedGroups>
                 </configuration>
             </plugin>
