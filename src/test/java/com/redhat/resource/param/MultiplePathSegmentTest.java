@@ -12,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.Client;
@@ -56,6 +57,7 @@ public class MultiplePathSegmentTest {
     * @tpSince RESTEasy 3.1.3.Final
     */
    @Test
+   @Category(com.redhat.utils.RCategory.class)
    public void testWildcardArray() throws Exception
    {
       Invocation.Builder request = client.target(generateURL("/a/b/c/array/3")).request();

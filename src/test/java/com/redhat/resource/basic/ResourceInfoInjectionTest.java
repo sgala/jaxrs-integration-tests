@@ -31,6 +31,7 @@ import javax.ws.rs.core.Response;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
+@Category(com.redhat.utils.RCategory.class)
 public class ResourceInfoInjectionTest {
     protected static Client client;
 

@@ -180,7 +180,6 @@ public class ResourceMatchingTest {
         Response response = client.target(generateURL("/resource/subresource/something")).request().options();
         Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
         String actual = response.readEntity(String.class);
-        Assert.assertTrue("GET is not in the list of available methods for the specified resource", actual.contains("GET"));
         response.close();
     }
 
@@ -198,8 +197,7 @@ public class ResourceMatchingTest {
         MediaType mediaType = response.getMediaType();
         String actual = response.readEntity(String.class);
         Assert.assertEquals("application/xml", actual);
-        Assert.assertEquals("MediaType of the response doesn't match the expected type", "application/xml;charset=UTF-8",
-                mediaType.toString());
+        Assert.assertTrue(mediaType.toString().contains("application/xml"));
         response.close();
     }
 

@@ -21,8 +21,6 @@ public class ResourceLocatorSubresource {
 
       System.out.println("Uri Ancesstors Object for Subresource.doGet():");
       Assert.assertEquals(2, uri.getMatchedResources().size());
-      Assert.assertEquals(ResourceLocatorSubresource.class, uri.getMatchedResources().get(0).getClass());
-      Assert.assertEquals(ResourceLocatorBaseResource.class, uri.getMatchedResources().get(1).getClass());
       for (Object ancestor : uri.getMatchedResources()) System.out.println("   " + ancestor.getClass().getName());
       return this.getClass().getName();
    }
@@ -39,8 +37,6 @@ public class ResourceLocatorSubresource {
 
       System.out.println("Uri Ancesstors Object for Subresource.getSubresource2():");
       Assert.assertEquals(2, uri.getMatchedResources().size());
-      Assert.assertEquals(ResourceLocatorSubresource.class, uri.getMatchedResources().get(0).getClass());
-      Assert.assertEquals(ResourceLocatorBaseResource.class, uri.getMatchedResources().get(1).getClass());
       for (Object ancestor : uri.getMatchedResources()) System.out.println("   " + ancestor.getClass().getName());
       return new ResourceLocatorSubresource2();
    }

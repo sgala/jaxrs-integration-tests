@@ -380,7 +380,7 @@
                     </systemPropertyVariables>
                     <!-- use this if you need to run specific test only -->
 <!--                    <includes>
-                        <include>com.redhat.asynch.**</include>
+                        <include>com.redhat.resource.basic.UriInfoTest</include>
                     </includes>-->
                     <excludedGroups>${category}</excludedGroups>
                 </configuration>

@@ -81,7 +81,6 @@ public class MatrixParamAsPrimitiveTest {
             Response response = client.target(generateURL("/" + param)).request()
                     .header(HttpHeaderNames.ACCEPT, "application/" + type)
                     .get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
             response.close();
             client.close();
         }
@@ -91,7 +90,6 @@ public class MatrixParamAsPrimitiveTest {
             Response response = client.target(generateURL("/wrappers" + param)).request()
                     .header(HttpHeaderNames.ACCEPT, "application/" + type)
                     .get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
             response.close();
             client.close();
         }
@@ -101,7 +99,6 @@ public class MatrixParamAsPrimitiveTest {
             Response response = client.target(generateURL("/list" + param + param + param)).request()
                     .header(HttpHeaderNames.ACCEPT, "application/" + type)
                     .get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
             response.close();
             client.close();
         }
@@ -123,7 +120,6 @@ public class MatrixParamAsPrimitiveTest {
             Response response = client.target(generateURL(base + "default/null")).request()
                     .header(HttpHeaderNames.ACCEPT, "application/" + type)
                     .get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
             response.close();
             client.close();
         }
@@ -133,7 +129,6 @@ public class MatrixParamAsPrimitiveTest {
             Response response = client.target(generateURL(base + "default")).request()
                     .header(HttpHeaderNames.ACCEPT, "application/" + type)
                     .get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
             response.close();
             client.close();
         }
@@ -144,7 +139,6 @@ public class MatrixParamAsPrimitiveTest {
             Response response = client.target(generateURL(base + "default/override" + param)).request()
                     .header(HttpHeaderNames.ACCEPT, "application/" + type)
                     .get();
-            Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
             response.close();
             client.close();
         }

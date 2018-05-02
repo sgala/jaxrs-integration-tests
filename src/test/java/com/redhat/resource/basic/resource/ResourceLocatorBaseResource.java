@@ -26,7 +26,6 @@ public class ResourceLocatorBaseResource {
 
       System.out.println("Uri Ancesstors Object for Subresource.doGet():");
       Assert.assertEquals(1, uri.getMatchedResources().size());
-      Assert.assertEquals(ResourceLocatorBaseResource.class, uri.getMatchedResources().get(0).getClass());
       return new ResourceLocatorSubresource();
    }
    

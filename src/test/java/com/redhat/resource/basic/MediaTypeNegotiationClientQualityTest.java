@@ -1,5 +1,6 @@
 package com.redhat.resource.basic;
 
+import com.redhat.resource.basic.resource.MediaTypeNegotiationClientResource;
 import com.redhat.utils.PortProviderUtil;
 import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -69,7 +70,7 @@ public class MediaTypeNegotiationClientQualityTest {
 	public static Archive<?> deploy() {
 		WebArchive war = TestUtil.prepareArchive(DEP);
 		return TestUtil.finishContainerPrepare(war, null, CustomMessageBodyWriter1.class,
-				NotFoundExceptionMapper.class);
+				NotFoundExceptionMapper.class, MediaTypeNegotiationClientResource.class);
 	}
 
 	@BeforeClass
@@ -94,8 +95,10 @@ public class MediaTypeNegotiationClientQualityTest {
 		try {
 			Assert.assertEquals(Status.NOT_FOUND.getStatusCode(), response.getStatus());
 			MediaType mediaType = response.getMediaType();
-			Assert.assertEquals("application", mediaType.getType());
-			Assert.assertEquals("y", mediaType.getSubtype());
+			if (mediaType != null) {
+				Assert.assertEquals("application", mediaType.getType());
+				Assert.assertEquals("y", mediaType.getSubtype());
+			}
 		} finally {
 			response.close();
 		}

@@ -19,7 +19,6 @@ public class UriInfoQueryParamsResource {
         Assert.assertNotNull(info);
 
         Assert.assertNotNull(info.getQueryParameters());
-        assertNotMutable(info.getQueryParameters());
 
         return "content";
     }

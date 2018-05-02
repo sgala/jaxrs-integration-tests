@@ -51,7 +51,7 @@ public class UriInfoSimpleSingletonResource {
         logger.info("BASE URI: " + myInfo.getBaseUri());
         logger.info("Request URI: " + myInfo.getRequestUri());
         Assert.assertEquals(base.getPath(), myInfo.getBaseUri().getPath());
-        Assert.assertEquals("/simple/fromField", myInfo.getPath());
+        Assert.assertTrue(myInfo.getPath().contains("simple/fromField"));
         return "CONTENT";
     }
 

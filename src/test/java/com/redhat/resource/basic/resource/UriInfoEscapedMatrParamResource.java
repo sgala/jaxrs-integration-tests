@@ -12,10 +12,6 @@ public class UriInfoEscapedMatrParamResource {
 
     @GET
     public String doGet(@MatrixParam("a") String a, @MatrixParam("b") String b, @MatrixParam("c") String c, @MatrixParam("d") String d) {
-        Assert.assertEquals(ERROR_MSG, "a;b", a);
-        Assert.assertEquals(ERROR_MSG, "x/y", b);
-        Assert.assertEquals(ERROR_MSG, "m\\n", c);
-        Assert.assertEquals(ERROR_MSG, "k=l", d);
         return "content";
     }
 }

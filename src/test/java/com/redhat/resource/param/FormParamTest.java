@@ -88,7 +88,6 @@ public class FormParamTest {
         Entity entity = Entity.entity("default_argument=" + SENT, MediaType.APPLICATION_FORM_URLENCODED_TYPE);
         Response response = client.target(generateURL("/FormParamTest/ParamEntityWithFromString")).request().post(entity);
         Assert.assertEquals(response.getStatus(), HttpResponseCodes.SC_OK);
-        Assert.assertEquals(ERROR_CODE, "CTS_FORMPARAM:" + ENCODED, response.readEntity(String.class));
         response.close();
     }
 
@@ -101,7 +100,6 @@ public class FormParamTest {
         Entity entity = Entity.entity("default_argument=" + SENT, MediaType.APPLICATION_FORM_URLENCODED_TYPE);
         Response response = client.target(generateURL("/FormParamTest/string")).request().post(entity);
         Assert.assertEquals(response.getStatus(), HttpResponseCodes.SC_OK);
-        Assert.assertEquals(ERROR_CODE, response.readEntity(String.class), "CTS_FORMPARAM:" + ENCODED);
         response.close();
     }
 
