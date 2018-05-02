@@ -13,7 +13,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.org.wildfly>8.1.0.Final</version.org.wildfly>
-        <cxf.version>3.2.2</cxf.version>
+        <cxf.version>3.1.12.redhat-1</cxf.version>
         <resteasy.version>3.5.0.Final</resteasy.version>
         <jws.home>${project.build.directory}/jws-5.0/tomcat</jws.home>
     </properties>
@@ -194,11 +194,6 @@
                     <version>${cxf.version}</version>
                 </dependency>
                 <dependency>
-                    <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-rt-transports-http-hc</artifactId>
-                    <version>${cxf.version}</version>
-                </dependency>
-                <dependency>
                     <groupId>javax.ws.rs</groupId>
                     <artifactId>javax.ws.rs-api</artifactId>
                     <version>2.1</version>
@@ -320,16 +315,11 @@
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
                     <artifactId>cxf-rt-rs-client</artifactId>
-                    <version>3.1.15</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-rt-frontend-jaxrs</artifactId>
                     <version>${cxf.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-rt-transports-http-hc</artifactId>
+                    <artifactId>cxf-rt-frontend-jaxrs</artifactId>
                     <version>${cxf.version}</version>
                 </dependency>
                 <dependency>
@@ -379,9 +369,9 @@
                         <pom>${dep.pom}</pom>
                     </systemPropertyVariables>
                     <!-- use this if you need to run specific test only -->
-<!--                    <includes>
+                    <includes>
                         <include>com.redhat.asynch.**</include>
-                    </includes>-->
+                    </includes>
                     <excludedGroups>${category}</excludedGroups>
                 </configuration>
             </plugin>
