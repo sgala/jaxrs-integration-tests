@@ -4,7 +4,7 @@
       <session>
          <display-name>Injectable</display-name>
          <ejb-name>Injectable</ejb-name>
-         <ejb-class>org.jboss.resteasy.test.cdi.modules.resource.CDIModulesInjectable</ejb-class>
+         <ejb-class>com.redhat.cdi.modules.resource.CDIModulesInjectable</ejb-class>
          <session-type>Stateless</session-type>
          <transaction-type>Container</transaction-type>
       </session>
