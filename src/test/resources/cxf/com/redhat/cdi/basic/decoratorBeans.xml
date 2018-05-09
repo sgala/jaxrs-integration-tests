@@ -3,16 +3,16 @@
        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
 
     <interceptors>
-        <class>org.jboss.resteasy.test.cdi.basic.resource.DecoratorsResourceInterceptor</class>
+        <class>com.redhat.cdi.basic.resource.DecoratorsResourceInterceptor</class>
     </interceptors>
 
     <decorators>
-        <class>org.jboss.resteasy.test.cdi.basic.resource.DecoratorsRequestFilterDecorator</class>
-        <class>org.jboss.resteasy.test.cdi.basic.resource.DecoratorsResponseFilterDecorator</class>
-        <class>org.jboss.resteasy.test.cdi.basic.resource.DecoratorsBookReaderInterceptorDecorator</class>
-        <class>org.jboss.resteasy.test.cdi.basic.resource.DecoratorsBookReaderDecorator</class>
-        <class>org.jboss.resteasy.test.cdi.basic.resource.DecoratorsBookWriterInterceptorDecorator</class>
-        <class>org.jboss.resteasy.test.cdi.basic.resource.DecoratorsBookWriterDecorator</class>
-        <class>org.jboss.resteasy.test.cdi.basic.resource.DecoratorsResourceDecorator</class>
+        <class>com.redhat.cdi.basic.resource.DecoratorsRequestFilterDecorator</class>
+        <class>com.redhat.cdi.basic.resource.DecoratorsResponseFilterDecorator</class>
+        <class>com.redhat.cdi.basic.resource.DecoratorsBookReaderInterceptorDecorator</class>
+        <class>com.redhat.cdi.basic.resource.DecoratorsBookReaderDecorator</class>
+        <class>com.redhat.cdi.basic.resource.DecoratorsBookWriterInterceptorDecorator</class>
+        <class>com.redhat.cdi.basic.resource.DecoratorsBookWriterDecorator</class>
+        <class>com.redhat.cdi.basic.resource.DecoratorsResourceDecorator</class>
     </decorators>
 </beans>

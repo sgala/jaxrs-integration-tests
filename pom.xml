@@ -94,6 +94,11 @@
             <artifactId>javax.json-api</artifactId>
             <version>1.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+        </dependency>
     </dependencies>
     <profiles>
         <profile>
@@ -380,9 +385,9 @@
                         <pom>${dep.pom}</pom>
                     </systemPropertyVariables>
                     <!-- use this if you need to run specific test only -->
-                    <includes>
-                        <include>com.redhat.providers.jaxb.**</include>
-                    </includes>
+<!--                    <includes>
+                        <include>com.redhat.cdi.basic.**</include>
+                    </includes>-->
                     <excludedGroups>${category}</excludedGroups>
                 </configuration>
             </plugin>
