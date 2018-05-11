@@ -134,6 +134,12 @@
                     <artifactId>resteasy-validator-provider-11</artifactId>
                     <version>${resteasy.version}</version>
                 </dependency>
+
+                <dependency>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jaxb-provider</artifactId>
+                    <version>${resteasy.version}</version>
+                </dependency>
             </dependencies>
             <properties>
                 <dep.pom>pom-resteasy.xml</dep.pom>
@@ -294,6 +300,13 @@
                     <artifactId>resteasy-validator-provider-11</artifactId>
                     <version>${resteasy.version}</version>
                 </dependency>
+
+                <dependency>
+                    <groupId>org.jboss.resteasy</groupId>
+                    <artifactId>resteasy-jaxb-provider</artifactId>
+                    <version>${resteasy.version}</version>
+                </dependency>
+
             </dependencies>
 
             <properties>
