@@ -41,8 +41,9 @@ public class TestUtil {
 
     private static String baseResourcePath = new StringBuilder()
             .append("src").append(File.separator)
-            .append("aq.test").append(File.separator)
-            .append("resources").append(File.separator).toString();
+            .append("test").append(File.separator)
+            .append("resources").append(File.separator)
+            .append("cxf").append(File.separator).toString();
 
     /**
      * Try to initialize logger. This is unsuccessful on EAP deployment, because EAP do not contain log4j.
