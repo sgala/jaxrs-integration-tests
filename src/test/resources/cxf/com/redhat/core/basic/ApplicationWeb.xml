@@ -3,8 +3,34 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
       version="3.0">
+
+    <context-param>
+        <param-name>cxf.jaxrs.classes-scan</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>cxf.jaxrs.classes-scan-packages</param-name>
+        <param-value>com.redhat</param-value>
+    </context-param>
+
+
+    <servlet>
+        <servlet-name>CXFServlet</servlet-name>
+        <servlet-class>
+            org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet
+        </servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>
+                com.redhat.utils.TestApplication
+            </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
     <servlet-mapping>
-        <servlet-name>com.redhat.core.basic.resources.ApplicationTestMappedApplication</servlet-name>
+        <servlet-name>CXFServlet</servlet-name>
         <url-pattern>/mapped/*</url-pattern>
     </servlet-mapping>
 

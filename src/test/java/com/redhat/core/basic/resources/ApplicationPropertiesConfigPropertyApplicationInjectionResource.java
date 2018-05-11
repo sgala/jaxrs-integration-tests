@@ -23,7 +23,6 @@ public class ApplicationPropertiesConfigPropertyApplicationInjectionResource {
         if (containskey) {
             response = "true";
         }
-        Assert.assertEquals("The injected application doesn't contain property \"Prop1\"", "true", response);
         String value = (String) application.getProperties().get("Prop1");
         return Response.ok(value).build();
     }
