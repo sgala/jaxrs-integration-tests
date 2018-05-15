@@ -22,7 +22,6 @@ public class ResourceLocatorWithBaseNoExpressionResource {
         Assert.assertEquals(ERROR_MSG, "a1/base/1/resources", matchedURIs.get(0));
         Assert.assertEquals(ERROR_MSG, "a1", matchedURIs.get(1));
         Assert.assertEquals(ERROR_MSG, 1, uri.getMatchedResources().size());
-        Assert.assertEquals(ERROR_MSG, ResourceLocatorWithBaseNoExpressionResource.class, uri.getMatchedResources().get(0).getClass());
         return new ResourceLocatorWithBaseNoExpressionSubresource();
 
     }
