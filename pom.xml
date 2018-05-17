@@ -163,7 +163,7 @@
                                 <configuration>
                                     <target>
                                         <!--extract server -->
-                                        <unzip src="${env.HUDSON_STATIC_ENV}/ews/${env.EWS_VERSION}/jws-application-server-${env.EWS_VERSION}-RHEL7-x86_64.zip"
+                                        <unzip src="${env.HUDSON_STATIC_ENV}/ews/${env.EWS_VERSION}/jws-application-server-${env.EWS_VERSION}-${env.EWS_PLATFORM}.zip"
                                                dest="${project.build.directory}"
                                                overwrite="true"/>
 
@@ -227,7 +227,7 @@
 
             </dependencies>
             <properties>
-                <dep.pom>pom1.xml</dep.pom>
+                <dep.pom>pom-cxf.xml</dep.pom>
                 <category>com.redhat.utils.RCategory</category>
             </properties>
             <build>
@@ -249,7 +249,7 @@
                                 <configuration>
                                     <target>
                                         <!--extract server -->
-                                        <unzip src="${env.HUDSON_STATIC_ENV}/ews/${env.EWS_VERSION}/jws-application-server-${env.EWS_VERSION}-RHEL7-x86_64.zip"
+                                        <unzip src="${env.HUDSON_STATIC_ENV}/ews/${env.EWS_VERSION}/jws-application-server-${env.EWS_VERSION}-${env.EWS_PLATFORM}.zip"
                                                dest="${project.build.directory}"
                                                overwrite="true"/>
 
@@ -366,12 +366,11 @@
                     <artifactId>javax.servlet-api</artifactId>
                     <version>4.0.1</version>
                 </dependency>
-
             </dependencies>
 
             <properties>
                 <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0-cxf\tomcat</jws.home>
-                <dep.pom>pom1.xml</dep.pom>
+                <dep.pom>pom-cxf.xml</dep.pom>
                 <category>com.redhat.utils.RCategory</category>
             </properties>
 
