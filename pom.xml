@@ -15,7 +15,7 @@
         <version.org.wildfly>8.1.0.Final</version.org.wildfly>
         <cxf.version>3.1.12.redhat-1</cxf.version>
         <resteasy.version>3.5.0.Final</resteasy.version>
-        <jws.home>${project.build.directory}/jws-5.0/tomcat</jws.home>
+        <jws.home>${env.TOMCAT_BASEDIR}</jws.home>
     </properties>
 
     <dependencyManagement>
@@ -162,11 +162,6 @@
                                 <phase>process-test-classes</phase>
                                 <configuration>
                                     <target>
-                                        <!--extract server -->
-                                        <unzip src="${env.HUDSON_STATIC_ENV}/ews/${env.EWS_VERSION}/jws-application-server-${env.EWS_VERSION}-${env.EWS_PLATFORM}.zip"
-                                               dest="${project.build.directory}"
-                                               overwrite="true"/>
-
                                         <!-- set tomcat user for arquillian -->
                                         <copy file="${project.basedir}/src/test/resources/resteasy/tomcat-users.xml"
                                               tofile="${jws.home}/conf/tomcat-users.xml" overwrite="true"/>
@@ -248,11 +243,6 @@
                                 <phase>process-test-classes</phase>
                                 <configuration>
                                     <target>
-                                        <!--extract server -->
-                                        <unzip src="${env.HUDSON_STATIC_ENV}/ews/${env.EWS_VERSION}/jws-application-server-${env.EWS_VERSION}-${env.EWS_PLATFORM}.zip"
-                                               dest="${project.build.directory}"
-                                               overwrite="true"/>
-
                                         <!-- set tomcat user for arquillian -->
                                         <copy file="${project.basedir}/src/test/resources/cxf/tomcat-users.xml"
                                               tofile="${jws.home}/conf/tomcat-users.xml" overwrite="true"/>
