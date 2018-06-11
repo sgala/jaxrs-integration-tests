@@ -17,12 +17,6 @@ public class JAXRS21SyncInvokeResource {
         return "get";
     }
 
-    @PUT
-    @Consumes("text/plain")
-    public String put(String str) {
-        return "put " + str;
-    }
-
     @POST
     @Consumes("text/plain")
     public String post(String str) {
@@ -35,7 +29,7 @@ public class JAXRS21SyncInvokeResource {
         return "delete";
     }
 
-    @PATCH
+    @PUT
     @Produces("text/plain")
     @Consumes("text/plain")
     public String patch(String str) {

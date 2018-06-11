@@ -15,6 +15,7 @@ import com.redhat.resource.basic.resource.ResourceLocatorSubresource3;
 import com.redhat.resource.basic.resource.ResourceLocatorSubresource3Interface;
 import com.redhat.utils.HttpServletResponse;
 import com.redhat.utils.PortProviderUtil;
+import com.redhat.utils.RCategory;
 import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -25,6 +26,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.Client;
@@ -101,6 +103,7 @@ public class ResourceLocatorTest
     * @tpSince RESTEasy 3.0.20
     */
    @Test
+   @Category(RCategory.class)
    public void testSubresource() throws Exception
    {
       {

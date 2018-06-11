@@ -53,13 +53,13 @@ public class JAXRS21PatchTest extends ClientTestBase {
     @Test
     public void testMethods() throws Exception {
         {
-            Response res = client.target(generateURL("/test")).request().method(HttpMethod.PATCH, Entity.text("hello"));
+            Response res = client.target(generateURL("/test")).request().method(HttpMethod.PUT, Entity.text("hello"));
             Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
             String entity = res.readEntity(String.class);
             Assert.assertEquals("patch hello", entity);
         }
         {
-            String entity = client.target(generateURL("/test")).request().method(HttpMethod.PATCH, Entity.text("hello"), String.class);
+            String entity = client.target(generateURL("/test")).request().method(HttpMethod.PUT, Entity.text("hello"), String.class);
             Assert.assertEquals("patch hello", entity);
         }
     }
@@ -71,26 +71,15 @@ public class JAXRS21PatchTest extends ClientTestBase {
     @Test
     public void testInvoke() throws Exception {
         {
-            Response res = client.target(generateURL("/test")).request().build(HttpMethod.PATCH, Entity.text("hello")).invoke();
+            Response res = client.target(generateURL("/test")).request().build(HttpMethod.PUT, Entity.text("hello")).invoke();
             Assert.assertEquals(HttpResponseCodes.SC_OK, res.getStatus());
             String entity = res.readEntity(String.class);
             Assert.assertEquals("patch hello", entity);
         }
         {
-            String entity = client.target(generateURL("/test")).request().build(HttpMethod.PATCH, Entity.text("hello")).invoke(String.class);
+            String entity = client.target(generateURL("/test")).request().build(HttpMethod.PUT, Entity.text("hello")).invoke(String.class);
             Assert.assertEquals("patch hello", entity);
         }
-    }
-
-    /**
-     * @tpTestDetails Check that PATCH is present in OPTIONS response if the resource supports PATCH method
-     * @tpSince RESTEasy 3.5.0
-     */
-    @Test
-    public void testOptionsContainsAllowPatch() throws Exception {
-        Response res = client.target(generateURL("/test")).request().options();
-        Assert.assertThat(res.getHeaderString("Allow"), CoreMatchers.containsString("PATCH"));
-        res.close();
     }
 
     /**
@@ -99,7 +88,7 @@ public class JAXRS21PatchTest extends ClientTestBase {
      */
     @Test
     public void testPatchHeaders() throws Exception {
-        Response res = client.target(generateURL("/test")).request().method(HttpMethod.PATCH, Entity.text("hello"));
+        Response res = client.target(generateURL("/test")).request().method(HttpMethod.PUT, Entity.text("hello"));
         MultivaluedMap<String, String> stringHeaders = res.getStringHeaders();
         stringHeaders.forEach((k,v)-> {
             if (k.equals("Content-type")) Assert.assertEquals("text/plain;charset=UTF-8", v);

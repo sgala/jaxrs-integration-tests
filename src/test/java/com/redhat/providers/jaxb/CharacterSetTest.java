@@ -3,6 +3,7 @@ package com.redhat.providers.jaxb;
 import com.redhat.providers.jaxb.resource.CharacterSetData;
 import com.redhat.providers.jaxb.resource.CharacterSetResource;
 import com.redhat.utils.PortProviderUtil;
+import com.redhat.utils.RCategory;
 import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -12,6 +13,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.Client;
@@ -31,6 +33,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
+@Category(RCategory.class)
 public class CharacterSetTest {
 
     private final String[] characterSets = {"US-ASCII", "UTF-8", "ISO-8859-1"};

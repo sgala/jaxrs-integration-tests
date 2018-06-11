@@ -6,6 +6,7 @@ import com.redhat.resource.path.resource.ResourceLocatorWithBaseNoExpressionSubr
 import com.redhat.resource.path.resource.ResourceLocatorWithBaseNoExpressionSubresource3;
 import com.redhat.resource.path.resource.ResourceLocatorWithBaseNoExpressionSubresource3Interface;
 import com.redhat.utils.PortProviderUtil;
+import com.redhat.utils.RCategory;
 import com.redhat.utils.TestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -16,6 +17,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +33,7 @@ import javax.ws.rs.core.Response;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
+@Category(RCategory.class)
 public class ResourceLocatorWithBaseNoExpressionTest {
     private static final String ERROR_MSG = "Response contain wrong content";
     static Client client;
