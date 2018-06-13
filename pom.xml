@@ -157,6 +157,7 @@
             </dependencies>
             <properties>
                 <dep.pom>src/test/resources/resteasy/pom-resteasy.xml</dep.pom>
+                <category>com.redhat.utils.CXFCategory</category>
             </properties>
             <build>
                 <testResources>
@@ -269,6 +270,66 @@
                         </executions>
                     </plugin>
                 </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>arq-tomcat-cxf</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-tomcat-managed-8</artifactId>
+                    <version>1.0.1.Final</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-transports-http</artifactId>
+                    <version>${cxf.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-rs-client</artifactId>
+                    <version>${cxf.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+                    <version>${cxf.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-transports-http-hc</artifactId>
+                    <version>3.1.12</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>javax.ws.rs-api</artifactId>
+                    <version>2.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.validation</groupId>
+                    <artifactId>validation-api</artifactId>
+                    <version>2.0.1.Final</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                    <version>4.0.1</version>
+                </dependency>
+            </dependencies>
+
+            <properties>
+                <jws.home>C:\Users\ipenkov\Desktop\jws\jws-5.0-cxf\tomcat</jws.home>
+                <dep.pom>pom-cxf.xml</dep.pom>
+                <category>com.redhat.utils.RCategory</category>
+            </properties>
+
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources/cxf</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                </testResources>
             </build>
         </profile>
     </profiles>

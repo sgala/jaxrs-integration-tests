@@ -21,6 +21,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +44,7 @@ import java.util.PropertyPermission;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
+@Category(com.redhat.utils.CXFCategory.class)
 public class CleanFilesDataSourceProviderTest {
 
     protected static final Logger logger = Logger.getLogger(CleanFilesDataSourceProviderTest.class.getName());
