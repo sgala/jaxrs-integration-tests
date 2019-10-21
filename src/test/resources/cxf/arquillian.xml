@@ -9,7 +9,7 @@
             <property name="bindHttpPort">8080</property>
             <property name="user">arquillian</property>
             <property name="pass">arquillian</property>
-            <property name="javaVmArguments">-DSECMGR="false"</property>
+            <property name="javaVmArguments">-DSECMGR="false" ${jdk.java.options}</property>
         </configuration>
     </container>
 </arquillian>
