@@ -12,9 +12,16 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <cxf.version>${env.CXF_VERSION}</cxf.version>
-        <resteasy.version>${env.RESTEASY_VERSION}</resteasy.version>
         <jws.home>${env.TOMCAT_BASEDIR}</jws.home>
+        <jdk.java.options></jdk.java.options>
+
+        <!-- Versions -->
+        <version.org.apache.cxf>${env.CXF_VERSION}</version.org.apache.cxf>
+        <version.org.jboss.resteasy>${env.RESTEASY_VERSION}</version.org.jboss.resteasy>
+        <version.com.sun.xml.bind>2.3.0</version.com.sun.xml.bind>
+        <version.org.jboss.arquillian>1.4.1.Final</version.org.jboss.arquillian>
+        <version.org.jboss.arquillian.container>1.1.0.Final</version.org.jboss.arquillian.container>
+        <version.junit>4.12</version.junit>
     </properties>
 
     <dependencyManagement>
@@ -22,7 +29,7 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.4.0.Final</version>
+                <version>${version.org.jboss.arquillian}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -32,7 +39,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -121,38 +128,38 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-tomcat-managed-8</artifactId>
-                    <version>1.0.1.Final</version>
+                    <version>${version.org.jboss.arquillian.container}</version>
                 </dependency>
 
                 <dependency>
                     <groupId>org.apache.tomcat</groupId>
                     <artifactId>tomcat-servlet-api</artifactId>
-                    <version>9.0.7</version>
+                    <version>9.0.21</version>
                     <scope>provided</scope>
                 </dependency>
 
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-jaxrs</artifactId>
-                    <version>${resteasy.version}</version>
+                    <version>${version.org.jboss.resteasy}</version>
                 </dependency>
 
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-client</artifactId>
-                    <version>${resteasy.version}</version>
+                    <version>${version.org.jboss.resteasy}</version>
                 </dependency>
 
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-validator-provider-11</artifactId>
-                    <version>${resteasy.version}</version>
+                    <version>${version.org.jboss.resteasy}</version>
                 </dependency>
 
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-jaxb-provider</artifactId>
-                    <version>${resteasy.version}</version>
+                    <version>${version.org.jboss.resteasy}</version>
                 </dependency>
             </dependencies>
             <properties>
@@ -197,22 +204,22 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-tomcat-managed-8</artifactId>
-                    <version>1.0.1.Final</version>
+                    <version>${version.org.jboss.arquillian.container}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
                     <artifactId>cxf-rt-transports-http</artifactId>
-                    <version>${cxf.version}</version>
+                    <version>${version.org.apache.cxf}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
                     <artifactId>cxf-rt-rs-client</artifactId>
-                    <version>${cxf.version}</version>
+                    <version>${version.org.apache.cxf}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
                     <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-                    <version>${cxf.version}</version>
+                    <version>${version.org.apache.cxf}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
@@ -278,22 +285,22 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-tomcat-managed-8</artifactId>
-                    <version>1.0.1.Final</version>
+                    <version>${version.org.jboss.arquillian.container}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
                     <artifactId>cxf-rt-transports-http</artifactId>
-                    <version>${cxf.version}</version>
+                    <version>${version.org.apache.cxf}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
                     <artifactId>cxf-rt-rs-client</artifactId>
-                    <version>${cxf.version}</version>
+                    <version>${version.org.apache.cxf}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
                     <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-                    <version>${cxf.version}</version>
+                    <version>${version.org.apache.cxf}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.cxf</groupId>
@@ -332,6 +339,42 @@
                 </testResources>
             </build>
         </profile>
+        <profile>
+            <id>jdk11</id>
+            <activation>
+                <jdk>11</jdk>
+            </activation>
+            <properties>
+                <jdk.java.options>--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED</jdk.java.options>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                    <version>${version.com.sun.xml.bind}</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.sun.xml.bind</groupId>
+                    <artifactId>jaxb-core</artifactId>
+                    <version>${version.com.sun.xml.bind}</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.sun.xml.bind</groupId>
+                    <artifactId>jaxb-impl</artifactId>
+                    <version>${version.com.sun.xml.bind}</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                    <version>1.1.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.jws</groupId>
+                    <artifactId>javax.jws-api</artifactId>
+                    <version>1.1</version>
+                </dependency>
+            </dependencies>
+        </profile>
     </profiles>
 
     <build>
@@ -350,6 +393,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
