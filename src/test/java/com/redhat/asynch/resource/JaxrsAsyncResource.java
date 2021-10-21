@@ -51,7 +51,7 @@ public class JaxrsAsyncResource {
             public void run() {
                 try {
                     logger.info("Timeout thread started.");
-                    Thread.sleep(1000);
+                    Thread.sleep(5000);
                     Response jaxrs = Response.ok("hello").type(MediaType.TEXT_PLAIN).build();
                     response.resume(jaxrs);
                 } catch (Exception e) {

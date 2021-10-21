@@ -47,7 +47,7 @@ public class LegacySuspendResource {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(5000);
                     Response jaxrs = Response.ok("hello").type(MediaType.TEXT_PLAIN).build();
                     response.resume(jaxrs);
                 } catch (Exception e) {
